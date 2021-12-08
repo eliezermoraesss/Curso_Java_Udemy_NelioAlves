@@ -51,7 +51,7 @@ public class Program {
 		System.out.println("PRICE TAGS:");
 
 		for (Product p : list) {
-			System.out.print(p.priceTag());
+			System.out.printf(p.priceTag());
 		}
 
 		sc.close();
