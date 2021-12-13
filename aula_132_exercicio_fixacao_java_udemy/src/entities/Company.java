@@ -23,19 +23,16 @@ public class Company extends TaxPayer {
 
 	@Override
 	public double tax() {
-		
+
 		double anualIncomeTax = (numberOfEmployees < 10) ? (getAnualIncome() * 0.16) : (getAnualIncome() * 0.14);
 		return anualIncomeTax;
-		
-		/*double anualIncomeTax = 0;
-		
-		if (numberOfEmployees < 10) {
-			anualIncomeTax = (getAnualIncome() * 0.16);
-		}
-		else {
-			anualIncomeTax = (getAnualIncome() * 0.14);
-		}
-		return anualIncomeTax;*/
-	}
 
+		/*
+		 * double anualIncomeTax = 0;
+		 * 
+		 * if (numberOfEmployees < 10) { anualIncomeTax = (getAnualIncome() * 0.16); }
+		 * else { anualIncomeTax = (getAnualIncome() * 0.14); } return anualIncomeTax;
+		 */
+
+	}
 }
