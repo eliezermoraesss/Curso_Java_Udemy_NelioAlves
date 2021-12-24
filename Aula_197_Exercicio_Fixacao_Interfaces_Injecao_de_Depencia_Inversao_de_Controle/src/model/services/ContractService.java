@@ -31,5 +31,4 @@ public class ContractService {
 		cal.add(Calendar.MONTH, n);
 		return cal.getTime();
 	}
-
 }
