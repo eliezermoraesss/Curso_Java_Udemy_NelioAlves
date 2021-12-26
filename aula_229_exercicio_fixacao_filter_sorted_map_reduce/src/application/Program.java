@@ -10,7 +10,7 @@ import java.util.Locale;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import entities.Product;
+import entities.Employee;
 
 public class Program {
 
@@ -21,32 +21,36 @@ public class Program {
 
 		System.out.print("Enter full file path: ");
 		String path = sc.nextLine();
+		System.out.print("Enter salary: ");	
+		double salary = sc.nextDouble();
 
 		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 
-			List<Product> list = new ArrayList<>();
+			List<Employee> list = new ArrayList<>();
 
 			String line = br.readLine();
 			while (line != null) {
 				String[] fields = line.split(",");
-				list.add(new Product(fields[0], Double.parseDouble(fields[1])));
+				list.add(new Employee(fields[0], fields[1], Double.parseDouble(fields[2])));
 				line = br.readLine();
 			}
-
-			double avg = list.stream()
-					.map(p -> p.getPrice())
-					.reduce(0.0, (x, y) -> x + y) / list.size();
 			
-			System.out.println("Average price: " + String.format("%.2f", avg));
+			System.out.println("Email of people whose salary is more than " + String.format("%.2f", salary));
 
 			Comparator<String> comp = (s1, s2) -> s1.toUpperCase().compareTo(s2.toUpperCase());
 
-			List<String> names = list.stream()
-					.filter(p -> p.getPrice() < avg)
-					.map(p -> p.getName())
-					.sorted(comp.reversed())
+			List<String> emails = list.stream()
+					.filter(p -> p.getSalary() > salary)
+					.map(p -> p.getEmail())
+					.sorted(comp)
 					.collect(Collectors.toList());
-			names.forEach(System.out::println);
+			emails.forEach(System.out::println);
+			
+			double sum = list.stream()				
+					.filter(e -> e.getName().charAt(0) == 'M')	
+					.map(e -> e.getSalary())
+					.reduce(0.0, (x, y) -> x + y);
+			System.out.println("Sum of salary of people whose name starts with 'M': " + sum);
 
 		} catch (IOException e) {
 			System.out.println("Error: " + e.getMessage());
