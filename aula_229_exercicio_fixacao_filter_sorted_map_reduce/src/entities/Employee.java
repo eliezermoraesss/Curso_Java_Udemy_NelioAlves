@@ -6,14 +6,6 @@ public class Employee {
 	private String email;
 	private Double salary;
 
-	public Employee() {
-	}
-	
-	public Employee(String email, Double salary) {
-		this.email = email;
-		this.salary = salary;
-	}
-
 	public Employee(String name, String email, Double salary) {
 		this.name = name;
 		this.email = email;
@@ -46,10 +38,5 @@ public class Employee {
 
 	public void setSalary(Double salary) {
 		this.salary = salary;
-	}
-
-	@Override
-	public String toString() {
-		return name + ", " + String.format("%.2f", salary);
 	}
 }
